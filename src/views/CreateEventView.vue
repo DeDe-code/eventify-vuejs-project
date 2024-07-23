@@ -187,7 +187,11 @@ import { uid } from 'uid'
 // import { uuid } from 'vue3-uuid'
 export default {
   setup() {
-    // create data
+    // Create data
+
+    // User info
+    const userId = ref('')
+    const userEmail = ref('')
 
     // Event Basic Info Location
     const eventName = ref('')
@@ -221,6 +225,22 @@ export default {
 
     // Event collector data
     const eventData = ref([])
+
+    // Get User Info
+    const getUserInfo = async () => {
+      try {
+        const response = await supabase.auth.getUser()
+        if (response) {
+          const userData = response.data.user
+          const { id, email } = userData
+          userId.value = id
+          userEmail.value = email
+        }
+      } catch (error) {
+        errorMsg.value = 'Error: there is no signed user'
+      }
+    }
+    getUserInfo()
 
     // Uploading Background Image
     const handleFileInputChange = async (event) => {
@@ -267,7 +287,8 @@ export default {
         const { error } = await supabase.from('events').insert([
           {
             event: eventData.value,
-            email: eventOrganizerEmail.value
+            user_id: userId.value,
+            user_email: userEmail.value
           }
         ])
         if (error) throw error
