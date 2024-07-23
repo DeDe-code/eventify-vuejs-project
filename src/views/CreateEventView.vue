@@ -194,6 +194,7 @@ export default {
     const userEmail = ref('')
 
     // Event Basic Info Location
+    let eventId = uid()
     const eventName = ref('')
     const eventDescription = ref('')
 
@@ -253,7 +254,7 @@ export default {
     const sendBackgroundImageToSupabase = async () => {
       const { error } = await supabase.storage
         .from('event-background')
-        .upload(`event-background_${Date.now()}.png`, backgroundImage)
+        .upload(`${eventId}.png`, backgroundImage)
       if (error) {
         console.log(error.message)
         return
@@ -262,7 +263,7 @@ export default {
 
     const gatheringEventData = () => {
       eventData.value.push({
-        id: uid(),
+        eventId: eventId,
         eventName: eventName.value,
         eventOrganizer: eventOrganizer.value,
         eventOrganizerPhone: eventOrganizerPhone.value,
@@ -274,8 +275,7 @@ export default {
         eventZipCode: eventZipCode.value,
         eventStartTime: eventStartTime.value,
         eventEndTime: eventEndTime.value,
-        eventDescription: eventDescription.value,
-        imageUrl: imageUrl.value
+        eventDescription: eventDescription.value
       })
     }
 
