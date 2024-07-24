@@ -12,6 +12,12 @@ const routes = [
     name: 'profile',
     component: () => import('@/views/ProfileView.vue')
   },
+
+  {
+    path: '/profileForm',
+    name: 'profileForm',
+    component: () => import('@/views/ProfileFormView.vue')
+  },
   {
     path: '/myEvents',
     name: 'myEvents',

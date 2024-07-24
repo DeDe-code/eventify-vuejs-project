@@ -1,14 +1,16 @@
 <template>
-  <div class="max-w-7xl mx-auto p-5 bg-orange-700">
-    <ul class="w-full flex justify-end gap-10">
-      <router-link :to="{ name: 'home' }">Home</router-link>
-      <router-link v-if="user" :to="{ name: 'createEvent' }">Create Event</router-link>
-      <router-link v-if="user" :to="{ name: 'myEvents' }">MyEvents</router-link>
-      <router-link v-if="user" :to="{ name: 'profile' }">MyProfile</router-link>
-      <router-link v-if="!user" :to="{ name: 'signup' }">SignUp</router-link>
-      <router-link v-if="!user" :to="{ name: 'login' }">LogIn</router-link>
-      <li v-if="user" @click="logout" class="cursor-pointer">Logout</li>
-    </ul>
+  <div class="w-full border-b-2 border-gray-300">
+    <div class="max-w-7xl mx-auto p-5">
+      <ul class="w-full flex justify-end gap-10">
+        <router-link :to="{ name: 'home' }">Home</router-link>
+        <router-link v-if="user" :to="{ name: 'createEvent' }">Create Event</router-link>
+        <router-link v-if="user" :to="{ name: 'myEvents' }">MyEvents</router-link>
+        <router-link v-if="user" :to="{ name: 'profile' }">MyProfile</router-link>
+        <router-link v-if="!user" :to="{ name: 'signup' }">SignUp</router-link>
+        <router-link v-if="!user" :to="{ name: 'login' }">LogIn</router-link>
+        <li v-if="user" @click="logout" class="cursor-pointer">Logout</li>
+      </ul>
+    </div>
   </div>
 </template>
 

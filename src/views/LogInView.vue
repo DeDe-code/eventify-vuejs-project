@@ -6,42 +6,55 @@
     </div>
 
     <!-- Login -->
-    <form @submit.prevent="login" class="p-8 flex-col bg-gray-500 rounded-md shadow-lg">
-      <h1 class="text-3xl text-green-500 mb-4">Log In</h1>
-      <div class="flex-col mb-2">
-        <label for="email" class="mb-1 text-sm text-green-500">Email</label>
+    <form
+      @submit.prevent="login"
+      class="p-8 flex-col border-2 border-gray-300 rounded-md shadow-md"
+    >
+      <h1 class="text-3xl text-green-800 mb-4">Log In</h1>
+      <div class="flex w-full justify-center items-center gap-x-10 mb-2">
+        <label for="email" class="mb-1 text-sm">Email</label>
         <input
           type="text"
           required
-          class="p2 text-gray-500 focus: outline-none"
+          class="p-1 text-white focus:outline-none bg-gray-400 rounded-md"
           id="email"
           v-model="email"
         />
       </div>
 
-      <div class="flex-col mb-2">
-        <label for="password" class="mb-1 text-sm text-green-500">Password</label>
+      <div class="flex w-full justify-center items-center gap-x-4 mb-2">
+        <label for="password" class="mb-1 text-sm">Password</label>
         <input
           type="text"
           required
-          class="p2 text-gray-500 focus: outline-none"
+          class="p-1 text-white focus:outline-none bg-gray-400 rounded-md"
           id="password"
           v-model="password"
         />
       </div>
-
-      <button
-        type="submit"
-        class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-green-300 duration-200 border-solid border-2 border-transparent hover: border-white hover:bg-white hover:text-green-500"
-      >
-        Login
-      </button>
-      <router-link :to="{ name: 'signup' }"
-        >Don't have an account<span class="bg-orange-500 p-4">SignUp</span></router-link
-      >
+      <div class="flex justify-between items-center">
+        <button
+          type="submit"
+          class="w-32 mt-4 p-3 text-center border-2 border-gray-300 shadow-md hover:border-blue-600"
+        >
+          Login
+        </button>
+        <p>or</p>
+        <router-link
+          :to="{ name: 'signup' }"
+          class="w-32 mt-4 p-3 text-center border-2 border-gray-300 shadow-md hover:border-blue-600"
+          >SignUp</router-link
+        >
+      </div>
     </form>
-    <GoogleOauth>Login with Google</GoogleOauth>
-    <FacebookOauth>Login with Facebook</FacebookOauth>
+    <GoogleOauth
+      class="max-w-screen-sm mx-auto mt-4 p-6 border-2 border-gray-300 rounded-md shadow-md hover:border-blue-600"
+      >Login with Google</GoogleOauth
+    >
+    <FacebookOauth
+      class="max-w-screen-sm mx-auto mt-4 p-6 border-2 border-gray-300 rounded-md shadow-md hover:border-blue-600"
+      >Login with Facebook</FacebookOauth
+    >
   </div>
 </template>
 

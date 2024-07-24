@@ -6,7 +6,6 @@ const state = reactive({ user: null })
 const methods = {
   setUser(payload) {
     state.user = payload ? payload.user : null
-    console.log(state.user)
   }
 }
 

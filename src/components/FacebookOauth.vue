@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="signInWithFacebook"><slot></slot></button>
+    <button class="w-full" @click="signInWithFacebook"><slot></slot></button>
   </div>
 </template>
 

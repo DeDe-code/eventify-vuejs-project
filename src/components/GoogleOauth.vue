@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="signInWithGoogle"><slot></slot></button>
+    <button class="w-full" @click="signInWithGoogle"><slot></slot></button>
   </div>
 </template>
 

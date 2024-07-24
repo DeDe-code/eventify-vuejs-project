@@ -1,7 +1,9 @@
 <template>
   <div v-if="appReady">
     <TheNavigation />
-    <router-view :key="$route.path"></router-view>
+    <Suspense>
+      <router-view :key="$route.path"></router-view>
+    </Suspense>
   </div>
 </template>
 <script>
@@ -16,7 +18,6 @@ export default {
 
     // check to see if user is already logged in
     const user = supabase.auth.getUser()
-    console.log(user)
 
     // if user doesn't exist, need to make app ready
     if (!user) {
@@ -26,7 +27,6 @@ export default {
     // runs when there ia a auth state change
     // if user is logged in, this will fire
     supabase.auth.onAuthStateChange((_, session) => {
-      console.log('hello')
       store.methods.setUser(session)
       appReady.value = true
     })

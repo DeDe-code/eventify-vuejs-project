@@ -11,121 +11,121 @@
     </div>
 
     <!-- Create form -->
-    <div class="p-8 flex items-start bg-colors-buff-md rounded-md shadow-lg">
+    <div class="p-8 flex items-start">
       <form @submit.prevent="sendEventDataToSupabase" class="flex flex-col gp-y-5 w-full">
-        <h1 class="text-2xl text-colors-corn-silk">Create your event</h1>
+        <h1 class="text-2xl text-green-800">Create your event</h1>
 
         <!-- Event Name -->
-        <div class="flex flex-col mt-4">
-          <label for="event-name" class="mb-1 text-sm text-colors-beige-light">Event name</label>
+        <div class="flex justify-between mt-4 p-4 border-2 border-gray-300 rounded-md shadow-md">
+          <label for="event-name" class="mb-1 text-sm">Event name</label>
           <input
             type="text"
             required
             id="event-name"
-            class="p-1 text-gray-500 focus:outline-none"
+            class="p-1 text-white focus:outline-none bg-gray-400 rounded-md"
             v-model="eventName"
           />
         </div>
 
         <!-- Event Organizer Info -->
-        <div class="flex flex-col gap-y-3">
-          <div class="flex flex-col mt-4">
-            <h3>Event Organizer Info</h3>
-            <label for="event-organizer" class="mb-1 text-sm text-colors-beige-light"
-              >Event Organizer</label
-            >
+        <div class="flex flex-col gap-y-2 mt-4 p-4 border-2 border-gray-300 rounded-md shadow-md">
+          <h2 class="text-green-800">Event Organizer Info</h2>
+          <div class="flex justify-between mt-4 border-b-2 border-gray-300">
+            <label for="event-organizer" class="mb-1 text-sm">Event Organizer</label>
             <input
               type="text"
               required
               id="event-organizer"
-              class="p-1 text-gray-500 focus:outline-none"
+              class="p-1 text-white focus:outline-none bg-gray-400 rounded-md"
               v-model="eventOrganizer"
             />
           </div>
-          <div class="flex flex-col mt-4">
-            <label for="organizer-phone" class="mb-1 text-sm text-colors-beige-light">Phone</label>
+          <div class="flex justify-between mt-4 border-b-2 border-gray-300">
+            <label for="organizer-phone" class="mb-1 text-sm">Phone</label>
             <input
               type="tel"
               required
               id="organizer-phone"
-              class="p-1 text-gray-500 focus:outline-none"
+              class="p-1 text-white focus:outline-none bg-gray-400 rounded-md"
               v-model="eventOrganizerPhone"
             />
           </div>
 
-          <div class="flex flex-col mt-4">
-            <label for="organizer-email" class="mb-1 text-sm text-colors-beige-light">Email</label>
+          <div class="flex justify-between mt-4 border-b-2 border-gray-300">
+            <label for="organizer-email" class="mb-1 text-sm">Email</label>
             <input
               type="email"
               required
               id="organizer-email"
-              class="p-1 text-gray-500 focus:outline-none"
+              class="p-1 text-white focus:outline-none bg-gray-400 rounded-md"
               v-model="eventOrganizerEmail"
             />
           </div>
         </div>
 
         <!-- Event Location -->
-        <div class="flex flex-col mt-4">
-          <h3>Event Location</h3>
-          <label for="event-country" class="mb-1 text-sm text-colors-beige-light">Country</label>
-          <input
-            type="text"
-            required
-            id="event-country"
-            class="p-1 text-gray-500 focus:outline-none"
-            v-model="eventCountry"
-          />
-        </div>
-        <div class="flex flex-col mt-4">
-          <label for="event-county" class="mb-1 text-sm text-colors-beige-light">County</label>
-          <input
-            type="text"
-            required
-            id="event-county"
-            class="p-1 text-gray-500 focus:outline-none"
-            v-model="eventCounty"
-          />
-        </div>
+        <div class="flex flex-col gap-y-2 mt-4 p-4 border-2 border-gray-300 rounded-md shadow-md">
+          <h2 class="text-green-800">Event Location</h2>
+          <div class="flex justify-between mt-4 border-b-2 border-gray-300">
+            <label for="event-country" class="mb-1 text-sm">Country</label>
+            <input
+              type="text"
+              required
+              id="event-country"
+              class="p-1 text-white focus:outline-none bg-gray-400 rounded-md"
+              v-model="eventCountry"
+            />
+          </div>
+          <div class="flex justify-between mt-4 border-b-2 border-gray-300">
+            <label for="event-county" class="mb-1 text-sm">County</label>
+            <input
+              type="text"
+              required
+              id="event-county"
+              class="p-1 text-white focus:outline-none bg-gray-400 rounded-md"
+              v-model="eventCounty"
+            />
+          </div>
 
-        <div class="flex flex-col mt-4">
-          <label for="event-city" class="mb-1 text-sm text-colors-beige-light">City</label>
-          <input
-            type="text"
-            required
-            id="event-city"
-            class="p-1 text-gray-500 focus:outline-none"
-            v-model="eventCity"
-          />
-        </div>
+          <div class="flex justify-between mt-4 border-b-2 border-gray-300">
+            <label for="event-city" class="mb-1 text-sm">City</label>
+            <input
+              type="text"
+              required
+              id="event-city"
+              class="p-1 text-white focus:outline-none bg-gray-400 rounded-md"
+              v-model="eventCity"
+            />
+          </div>
 
-        <div class="flex flex-col mt-4">
-          <label for="event-address" class="mb-1 text-sm text-colors-beige-light">Address</label>
-          <input
-            type="text"
-            required
-            id="event-address"
-            class="p-1 text-gray-500 focus:outline-none"
-            v-model="eventAddress"
-          />
-        </div>
+          <div class="flex justify-between mt-4 border-b-2 border-gray-300">
+            <label for="event-address" class="mb-1 text-sm">Address</label>
+            <input
+              type="text"
+              required
+              id="event-address"
+              class="p-1 text-white focus:outline-none bg-gray-400 rounded-md"
+              v-model="eventAddress"
+            />
+          </div>
 
-        <div class="flex flex-col mt-4">
-          <label for="event-zip" class="mb-1 text-sm text-colors-beige-light">Zip code</label>
-          <input
-            type="number"
-            required
-            id="event-zip"
-            class="p-1 text-gray-500 focus:outline-none"
-            v-model="eventZipCode"
-          />
+          <div class="flex justify-between mt-4 border-b-2 border-gray-300">
+            <label for="event-zip" class="mb-1 text-sm">Postal Code</label>
+            <input
+              type="number"
+              required
+              id="event-zip"
+              class="p-1 text-white focus:outline-none bg-gray-400 rounded-md"
+              v-model="eventZipCode"
+            />
+          </div>
         </div>
 
         <!-- Event date -->
-        <div class="flex flex-col gap-y-3 mt-4">
-          <h3>Event date</h3>
-          <div class="flex flex-col">
-            <label for="event-start" class="mb-1 text-sm text-colors-beige-light">Start</label>
+        <div class="flex flex-col gap-y-2 mt-4 p-4 border-2 border-gray-300 rounded-md shadow-md">
+          <h2 class="text-green-800">Event date</h2>
+          <div class="flex flex-col mt-4 border-b-2 border-gray-300">
+            <label for="event-start" class="mb-1 text-sm">Start</label>
             <input
               type="datetime-local"
               required
@@ -134,8 +134,8 @@
               v-model="eventStartTime"
             />
           </div>
-          <div class="flex flex-col">
-            <label for="event-end" class="mb-1 text-sm text-colors-beige-light">End</label>
+          <div class="flex flex-col mt-4 border-b-2 border-gray-300">
+            <label for="event-end" class="mb-1 text-sm">End</label>
             <input
               type="datetime-local"
               required
@@ -147,31 +147,33 @@
         </div>
 
         <!-- Event description -->
-        <div class="flex flex-col mt-4">
-          <h3>Event description</h3>
-          <label for="event-description" class="mb-1 text-sm text-colors-beige-light"
-            >Description</label
-          >
-          <textarea
-            rows="6"
-            cols="20"
-            required
-            id="event-description"
-            class="p-1 text-gray-500 focus:outline-none"
-            v-model="eventDescription"
-          ></textarea>
+        <div class="flex flex-col gap-y-2 mt-4 p-4 border-2 border-gray-300 rounded-md shadow-md">
+          <h2 class="text-green-800">Event description</h2>
+          <div class="flex flex-col mt-4">
+            <label for="event-description" class="mb-1 text-sm">Description</label>
+            <textarea
+              rows="6"
+              cols="20"
+              required
+              id="event-description"
+              class="p-1 text-white focus:outline-none bg-gray-400 rounded-md"
+              v-model="eventDescription"
+            ></textarea>
+          </div>
         </div>
 
         <!-- Event Background Image -->
-        <div class="flex flex-col mt-4">
-          <h3>Event Background</h3>
-          <label for="background-upload" class="mt-2">Upload an event background image</label>
-          <input type="file" id="background-upload" @change="handleFileInputChange" />
+        <div class="flex flex-col gap-y-2 mt-4 p-4 border-2 border-gray-300 rounded-md shadow-md">
+          <h2 class="text-green-800">Event Background</h2>
+          <div class="flex justify-between mt-4 border-b-2 border-gray-300">
+            <label for="background-upload" class="mt-2">Upload an event background image</label>
+            <input type="file" id="background-upload" @change="handleFileInputChange" />
+          </div>
         </div>
 
         <button
           type="submit"
-          class="mt-6 p-3 rounded-sm self-start text-sm bg-colors-tea-green duration-200 border-solid border-2 border-transparent hover:border-colors-papaya-whip hover:bg-colors-beige-light"
+          class="w-32 mt-4 p-3 text-center border-2 border-gray-300 shadow-md hover:border-blue-600"
         >
           Add Event
         </button>
@@ -184,7 +186,6 @@
 import { ref } from 'vue'
 import { supabase } from '@/supabase/init'
 import { uid } from 'uid'
-// import { uuid } from 'vue3-uuid'
 export default {
   setup() {
     // Create data
@@ -287,8 +288,9 @@ export default {
         const { error } = await supabase.from('events').insert([
           {
             event: eventData.value,
+            id: userId.value,
             user_id: userId.value,
-            user_email: userEmail.value
+            email: userEmail.value
           }
         ])
         if (error) throw error
