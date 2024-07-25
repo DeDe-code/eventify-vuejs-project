@@ -186,6 +186,7 @@
 import { ref } from 'vue'
 import { supabase } from '@/supabase/init'
 import { uid } from 'uid'
+import { v4 } from 'uuid'
 export default {
   setup() {
     // Create data
@@ -234,6 +235,7 @@ export default {
         const response = await supabase.auth.getUser()
         if (response) {
           const userData = response.data.user
+          console.log(userData)
           const { id, email } = userData
           userId.value = id
           userEmail.value = email
@@ -262,35 +264,27 @@ export default {
       }
     }
 
-    const gatheringEventData = () => {
-      eventData.value.push({
-        eventId: eventId,
-        eventName: eventName.value,
-        eventOrganizer: eventOrganizer.value,
-        eventOrganizerPhone: eventOrganizerPhone.value,
-        eventOrganizerEmail: eventOrganizerEmail.value,
-        eventCountry: eventCountry.value,
-        eventCounty: eventCountry.value,
-        eventCity: eventCity.value,
-        eventAddress: eventAddress.value,
-        eventZipCode: eventZipCode.value,
-        eventStartTime: eventStartTime.value,
-        eventEndTime: eventEndTime.value,
-        eventDescription: eventDescription.value
-      })
-    }
-
     const sendEventDataToSupabase = async () => {
-      gatheringEventData()
       sendBackgroundImageToSupabase()
 
       try {
         const { error } = await supabase.from('events').insert([
           {
-            event: eventData.value,
-            id: userId.value,
-            user_id: userId.value,
-            email: userEmail.value
+            id: v4(),
+            user_id: v4(),
+            email: eventOrganizerEmail.value,
+            event_id: eventId,
+            name: eventName.value,
+            organizer: eventOrganizer.value,
+            phone: eventOrganizerPhone.value,
+            country: eventCountry.value,
+            province: eventCountry.value,
+            city: eventCity.value,
+            address: eventAddress.value,
+            postal_code: eventZipCode.value,
+            start: eventStartTime.value,
+            end: eventEndTime.value,
+            description: eventDescription.value
           }
         ])
         if (error) throw error
@@ -314,9 +308,9 @@ export default {
         }, 5000)
       } catch (error) {
         errorMsg.value = `Error:${error.message}`
-        setTimeout(() => {
-          errorMsg.value = false
-        }, 5000)
+        // setTimeout(() => {
+        // errorMsg.value = false
+        // }, 5000)
       }
       console.log(eventData)
     }

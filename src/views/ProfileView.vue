@@ -1,5 +1,5 @@
 <template>
-  <div v-if="dataLoaded">
+  <div>
     <div class="flex flex-col max-w-2xl mx-auto mt-6">
       <!-- Basic info -->
       <div class="flex flex-col p-4 border-2 border-gray-300 rounded-md shadow-md">
@@ -87,6 +87,7 @@ export default {
       try {
         const response = await supabase.auth.getUser()
         if (response) {
+          console.log(response)
           const userData = response.data.user
           const { email } = userData
           userEmail.value = email
@@ -98,21 +99,6 @@ export default {
       }
     }
     getUserInfo()
-
-    // Get data from supabase
-    const getUserData = async () => {
-      try {
-        const { data, error } = await supabase.from('users').select('*, events(*)')
-        if (error) throw error
-        if (data) {
-          dataLoaded.value = true
-          userId.value = data[0].user[0].userId
-          userInfo.value = data[0].user[0]
-        }
-      } catch (error) {
-        errorMsg.value = error.message
-      }
-    }
 
     // Get Profile Image
     const getProfileImage = async () => {
@@ -133,7 +119,6 @@ export default {
       }
     }
 
-    getUserData()
     getProfileImage()
 
     return { userInfo, userEmail, userName, avatarUrl, dataLoaded, cdnUrl, profilePictureName }

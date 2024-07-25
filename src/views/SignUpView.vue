@@ -77,7 +77,6 @@ import GoogleOauth from '@/components/GoogleOauth.vue'
 import FacebookOauth from '@/components/FacebookOauth.vue'
 
 export default {
-  name: 'signup',
   components: { GoogleOauth, FacebookOauth },
   setup() {
     const router = useRouter()
