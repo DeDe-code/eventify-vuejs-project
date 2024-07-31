@@ -185,7 +185,6 @@
 <script>
 import { ref } from 'vue'
 import { supabase } from '@/supabase/init'
-import { uid } from 'uid'
 import { v4 } from 'uuid'
 export default {
   setup() {
@@ -196,7 +195,7 @@ export default {
     const userEmail = ref('')
 
     // Event Basic Info Location
-    let eventId = uid()
+    const id = v4()
     const eventName = ref('')
     const eventDescription = ref('')
 
@@ -257,7 +256,7 @@ export default {
     const sendBackgroundImageToSupabase = async () => {
       const { error } = await supabase.storage
         .from('event-background')
-        .upload(`${eventId}.png`, backgroundImage)
+        .upload(`${id}/background`, backgroundImage)
       if (error) {
         console.log(error.message)
         return
@@ -270,10 +269,9 @@ export default {
       try {
         const { error } = await supabase.from('events').insert([
           {
-            id: v4(),
-            user_id: v4(),
+            id: id,
+            user_id: userId.value,
             email: eventOrganizerEmail.value,
-            event_id: eventId,
             name: eventName.value,
             organizer: eventOrganizer.value,
             phone: eventOrganizerPhone.value,
@@ -308,9 +306,9 @@ export default {
         }, 5000)
       } catch (error) {
         errorMsg.value = `Error:${error.message}`
-        // setTimeout(() => {
-        // errorMsg.value = false
-        // }, 5000)
+        setTimeout(() => {
+          errorMsg.value = false
+        }, 5000)
       }
       console.log(eventData)
     }

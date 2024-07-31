@@ -3,15 +3,15 @@
     <div class="flex gap-x-4 mt-10 mb-10">
       <router-link
         v-for="info in eventInfo"
-        :key="info.event_id"
+        :key="info.id"
         class="flex flex-col max-w-sm"
-        :to="{ name: 'event', params: { eventId: info.event_id } }"
+        :to="{ name: 'event', params: { eventId: info.id } }"
       >
         <div
           class="w-full h-56 relative overflow-hidden border-b-2 border-gray-300 rounded-md shadow-md"
         >
           <img
-            :src="`${cdnUrl}/${info.event_id}.png`"
+            :src="`${cdnUrl}/${info.id}/background`"
             alt="eventBackground"
             class="w-full block bg-cover z-0"
           />
