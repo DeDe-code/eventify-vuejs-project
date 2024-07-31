@@ -17,7 +17,7 @@ const routes = [
     name: 'profile',
     meta: {
       title: 'Profile',
-      auth: true
+      requiresAuth: true
     },
     component: () => import('@/views/ProfileView.vue')
   },
@@ -27,7 +27,7 @@ const routes = [
     name: 'profileForm',
     meta: {
       title: 'Profile Form',
-      auth: true
+      requiresAuth: true
     },
     component: () => import('@/views/ProfileFormView.vue')
   },
@@ -36,7 +36,7 @@ const routes = [
     name: 'myEvents',
     meta: {
       title: 'My Events',
-      auth: true
+      requiresAuth: true
     },
     component: () => import('@/views/MyEventsView.vue')
   },
@@ -44,6 +44,10 @@ const routes = [
   {
     path: '/event/:eventId',
     name: 'event',
+    meta: {
+      title: 'Event',
+      requiresAuth: false
+    },
     component: () => import('@/views/EventView.vue')
   },
 
@@ -52,7 +56,7 @@ const routes = [
     name: 'createEvent',
     meta: {
       title: 'Create Event',
-      auth: true
+      requiresAuth: true
     },
     component: () => import('@/views/CreateEventView.vue')
   },
@@ -61,7 +65,7 @@ const routes = [
     name: 'signup',
     meta: {
       title: 'Signup',
-      auth: false
+      requiresAuth: false
     },
     component: () => import('@/views/SignUpView.vue')
   },
@@ -70,7 +74,7 @@ const routes = [
     name: 'login',
     meta: {
       title: 'Login',
-      auth: false
+      requiresAuth: false
     },
     component: () => import('@/views/LogInView.vue')
   }
@@ -86,5 +90,25 @@ router.beforeEach((to, from, next) => {
   document.title = `${to.meta.title} | Active Tracker`
   next()
 })
+
+// Route guard for auth routes
+
+async function getAuthUser(next) {
+  const authUser = await supabase.auth.getSession()
+  if (authUser.data.session === null) {
+    next({ name: 'login' })
+  } else {
+    next()
+  }
+}
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    getAuthUser(next)
+  } else {
+    next()
+  }
+})
+
 export default router
 export { routes as paths }

@@ -144,7 +144,6 @@ export default {
     const authenticatedUserEmail = ref('')
 
     // User info variables
-    const userId = v4()
     const userBirthday = ref('')
     const userGender = ref('')
     const userPhone = ref('')
@@ -190,40 +189,34 @@ export default {
     }
 
     const sendProfileImageToSupabase = async () => {
-      const { error } = await supabase.storage.from('avatars').upload(`${userId}.png`, profileImage)
+      const { error } = await supabase.storage
+        .from('avatars')
+        .upload(`/${authenticatedUserId.value}/avatar`, profileImage)
       if (error) {
         console.log(error.message)
         return
       }
     }
 
-    const gatheringUserData = () => {
-      userData.value.push({
-        userId: userId,
-        userBirthday: userBirthday.value,
-        userGender: userGender.value,
-        userPhone: userPhone.value,
-        userCountry: userCountry.value,
-        userProvince: userProvince.value,
-        userCity: userCity.value,
-        userStreetAddress: userStreetAddress.value,
-        userPostalCode: userPostalCode.value
-      })
-    }
-
     const sendUserDataToSupabase = async () => {
-      gatheringUserData()
       sendProfileImageToSupabase()
 
       try {
-        const { error } = await supabase.from('users').insert([
-          {
-            user: userData.value,
-            id: authenticatedUserId.value,
-            user_id: authenticatedUserId.value,
-            email: authenticatedUserEmail.value
-          }
-        ])
+        const { error } = await supabase
+          .from('profiles')
+          .update([
+            {
+              birthday: userBirthday.value,
+              gender: userGender.value,
+              phone: userPhone.value,
+              country: userCountry.value,
+              province: userProvince.value,
+              city: userCity.value,
+              address: userStreetAddress.value,
+              postal_code: userPostalCode.value
+            }
+          ])
+          .eq('id', authenticatedUserId.value)
         if (error) throw error
         statusMsg.value = 'Success: Event created!'
         userBirthday.value = ''
