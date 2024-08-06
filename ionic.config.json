@@ -1,0 +1,7 @@
+{
+  "name": "eventify-project",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}
