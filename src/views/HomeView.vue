@@ -16,7 +16,7 @@
             class="w-full block bg-cover z-0"
           />
           <h1 class="absolute bottom-32 left-10 text-3xl text-colors-beige-light">
-            {{ info.name }}
+            {{ `${info.name} test` }}
           </h1>
         </div>
         <!-- Event Date -->
