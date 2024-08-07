@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div v-for="info in profileInfos" :key="info.id" class="flex flex-col max-w-2xl mx-auto mt-6">
+    <div
+      v-for="info in profileInfos"
+      :key="info.id"
+      class="flex flex-col max-w-2xl mx-auto mt-6 mb-35"
+    >
       <!-- Basic info -->
       <div class="flex flex-col p-4 border-2 border-gray-300 rounded-md shadow-md">
         <h1 class="text-green-800">Basic info</h1>

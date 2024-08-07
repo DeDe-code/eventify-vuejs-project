@@ -4,6 +4,7 @@
     <Suspense>
       <router-view :key="$route.path"></router-view>
     </Suspense>
+    <MobileNavigation />
   </div>
 </template>
 <script>
@@ -11,8 +12,9 @@ import { ref } from 'vue'
 import { supabase } from './supabase/init'
 import store from '@/store/index'
 import TheNavigation from '@/components/TheNavigation.vue'
+import MobileNavigation from './components/MobileNavigation.vue'
 export default {
-  components: { TheNavigation },
+  components: { TheNavigation, MobileNavigation },
   setup() {
     const appReady = ref(null)
 
